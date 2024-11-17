@@ -1,0 +1,13 @@
+name: wust-ml-lab-4
+dependencies:
+  - python=3.11
+  - numpy
+  - jupyterlab
+  - matplotlib
+  - scikit-learn
+  # test dependencies
+  - pytest
+  # development dependencies
+  - pre-commit
+  - ruff # replacement for black, isort and other tools support PEP8 and other clean code guidelines
+  - mypy # PEP 484

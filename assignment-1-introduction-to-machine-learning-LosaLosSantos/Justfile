@@ -1,0 +1,23 @@
+# runs pre-commit hooks
+pc:
+    pre-commit run --all-files
+
+# runs black without reformatting the code
+# PEP 8 - Code Style
+black:
+    black --check src/
+
+# runs pydocstyle without reformatting the code
+# PEP 257
+pydocstyle:
+    pydocstyle src/
+
+# runs mypy
+# PEP 484
+mypy:
+    mypy src/ --disallow-untyped-defs
+
+# runs isort
+# PEP 8 - Code Style
+isort:
+    isort --profile black ./src --check

@@ -1,0 +1,15 @@
+name: wust-ml-lab-1
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  # test dependencies
+  - pytest
+  - scikit-learn
+  # development dependencies
+  - pre-commit
+  - black # PEP 8
+  - pydocstyle # PEP 257
+  - mypy # PEP 484
