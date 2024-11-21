@@ -1,0 +1,42 @@
+name: Autograding Tests
+'on':
+  push:
+    branches:
+      - main
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Conda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          environment-file: environment.yml
+          activate-environment: wust-ml-lab-5
+
+      - name: Check installed packages
+        run: pip list
+
+      - name: Python Test
+        id: python-test
+        uses: classroom-resources/autograding-python-grader@v1
+        with:
+          timeout: 10
+          max-score: 1
+          setup-command: |
+            pip install numpy pytest
+            echo "Dependencies installed"
+
+      - name: Autograding Reporter
+        uses: classroom-resources/autograding-grading-reporter@v1
+        env:
+          PYTHON-TEST_RESULTS: "${{steps.python-test.outputs.result}}"
+        with:
+          runners: python-test

@@ -1,0 +1,17 @@
+# create conda envs
+env:
+    conda env create -f environment.yml
+
+# runs pre-commit hooks
+pc:
+    pre-commit run --all-files
+
+# runs ruff
+# PEP8 and others
+format:
+    ruff check --fix --exclude=tests,docs . && ruff format . --exclude=tests,docs
+
+# runs mypy
+# PEP 484
+mypy:
+    mypy src/ --disallow-untyped-defs
